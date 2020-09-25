@@ -3,6 +3,7 @@
 <yandex>
   <remote_servers>
 {% for shard_name, replicas in clickhouse_shards.items() | list %}
+    {% if replicas %}
     <{{ shard_name }}>
       <shard>
         <internal_replication>true</internal_replication>
@@ -14,6 +15,7 @@
 {% endfor %}
       </shard>
     </{{ shard_name }}>
+    {% endif %}
 {% endfor %}
   </remote_servers>
 </yandex>
